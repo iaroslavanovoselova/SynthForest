@@ -1,0 +1,48 @@
+# Joint France + Shizuoka held-out full-raster benchmark.
+#
+# Both datasets are resolved from the shared CHM_rasters_20cm root. Metrics are
+# summarized per dataset by the raster benchmark runner.
+
+model_type: dpt_height
+train_config_path: null
+run_folder: null
+checkpoint_name: last.pth
+checkpoint_path: null
+output_folder: ${SYNTHFOREST_OUTPUT_ROOT}/heights/raster_benchmarks
+benchmark_name: null
+
+rasters: []
+rgb_root_path: ${SYNTHFOREST_DATA_ROOT}/CHM_rasters_20cm
+height_root_path: ${SYNTHFOREST_DATA_ROOT}/CHM_rasters_20cm
+rgb_glob: "*/benchmark/**/*_RGB.tif"
+height_glob: "*/benchmark/**/*_CHM_matchRGB.tif"
+rgb_name_suffix: "_RGB"
+height_name_suffix: "_CHM_matchRGB"
+image_suffixes: [.tif, .tiff, .png, .jpg, .jpeg]
+height_suffixes: [.tif, .tiff]
+
+tile_size: 512
+stride: 256
+batch_size: 1
+device: null
+seed: 42
+max_rasters: null
+save_predictions: true
+save_weight_maps: false
+metric_resolution:
+  enabled: true
+  rgb_gsd_m: 0.2
+  height_gsd_m: 0.5
+  downsample_factor: null
+  min_valid_fraction: 0.5
+  downsample_interpolation: area
+  upsample_interpolation: nearest
+
+wandb:
+  enabled: true
+  project: synthforest_CHE_eval
+  entity: null
+  tags: [virtual-shizuoka-chm, france-mnh-lidar-hd, raster-level, last-chkpt]
+  mode: null
+  log_artifacts: true
+  required: false

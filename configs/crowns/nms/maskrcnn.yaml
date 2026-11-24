@@ -1,0 +1,92 @@
+# Validation raster NMS search adapted from CanopyRS evaluation logic.
+
+model_type: maskrcnn
+train_config_path: null
+run_folder: null
+checkpoint_name: last.pth
+checkpoint_path: null
+real_data_root: ${SYNTHFOREST_DATA_ROOT}/canopyrs
+output_folder: ${SYNTHFOREST_OUTPUT_ROOT}/detectors/benchmarks
+prediction_source: null
+reuse_predictions: true
+resume_existing_benchmark: true
+
+datasets:
+  - QuebecTrees
+  - SelvaMask
+fold_name: valid
+tile_only: true
+
+nms_algorithm: iou
+nms_iou_thresholds:
+  - 0.05
+  - 0.10
+  - 0.15
+  - 0.20
+  - 0.25
+  - 0.30
+  - 0.35
+  - 0.40
+  - 0.45
+  - 0.50
+  - 0.55
+  - 0.60
+  - 0.65
+  - 0.70
+  - 0.75
+  - 0.80
+  - 0.85
+  - 0.90
+  - 0.95
+  - 1.00
+nms_score_thresholds:
+  - 0.05
+  - 0.10
+  - 0.15
+  - 0.20
+  - 0.25
+  - 0.30
+  - 0.35
+  - 0.40
+  - 0.45
+  - 0.50
+  - 0.55
+  - 0.60
+  - 0.65
+  - 0.70
+  - 0.75
+  - 0.80
+  - 0.85
+  - 0.90
+  - 0.95
+  - 1.00
+# CanopyRS defaults to RF1@75. Override with 50:95 to optimize RF1@50:95.
+objective_iou_threshold: 0.75
+eval_iou_threshold: 50:95
+raster_eval_iou_threshold: 50:95
+n_workers: 6
+search_name: null
+
+# Raster detector RF1 is bbox-based; mask metrics remain in the normal benchmark.
+evaluate_segmentation_when_available: false
+mask_probability_threshold: 0.5
+batch_size: 1
+num_workers: 4
+device: null
+seed: 42
+max_products: null
+max_tiles: null
+drop_edge_tiles: false
+edge_tile_black_pixel_threshold: 0.2
+edge_tile_black_pixel_tolerance: 0
+allow_hf_gpkg_download: false
+
+wandb:
+  enabled: false
+  project: synthforest_CD_eval
+  entity: null
+  tags: []
+  mode: null
+  required: false
+  step: 0
+  resume_existing: true

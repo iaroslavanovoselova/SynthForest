@@ -1,0 +1,147 @@
+# DINOv3 DPT canopy-height training on tiled real NEON RGB/CHM pairs.
+#
+# Real-NEON baseline of Table 4. The tiles are produced from the prepared NEON
+# rasters (`synthforest data prepare neon`). The train fold is used for
+# optimization and the valid fold for checkpoint selection.
+
+data_root_path: ${SYNTHFOREST_DATA_ROOT}/
+train_dataset_names:
+  - NEON_CHM_1m_real_tiles
+test_dataset_names: []
+
+train_output_path: ${SYNTHFOREST_OUTPUT_ROOT}/heights/training
+run_name: null
+post_training_benchmark:
+  enabled: true
+  config_path: height/benchmark/neon_raster
+  checkpoint_name: last.pth
+  fail_on_error: false
+
+model_type: dpt_height
+dinov3_model_dir: ${SYNTHFOREST_MODEL_ROOT}/dinov3-vitl16
+dinov3_model: dinov3_vitl16
+dinov3_pretraining: lvd1689m
+dinov3_embed_dim: 1024
+dinov3_patch_size: 16
+dinov3_use_fake_backbone: false
+dinov3_fake_num_blocks: 4
+
+dpt_feature_layers: [5, 11, 17, 23]
+dpt_feature_dim: 256
+dpt_out_channels: [256, 512, 1024, 1024]
+dpt_use_batch_norm: false
+
+min_valid_height_m: 0.0
+max_valid_height_m: 60
+loss_name: smooth_l1
+
+lora: null
+
+batch_size: 2
+grad_accumulation_steps: 2
+dataloader_num_workers: 4
+seed: 42
+use_amp: true
+debug_overfit_batches: 0
+debug_eval_on_train: false
+
+preserve_input_resolution: true
+augmentation:
+  image_mean: [0.485, 0.456, 0.406]
+  image_std: [0.229, 0.224, 0.225]
+  resize_min_sizes_train: [256]
+  resize_min_size_eval: 256
+  max_size: 256
+  crop_prob: 0.0
+  flip_horizontal: true
+  flip_vertical: true
+  rotation_degrees: 30.0
+  rotation_prob: 0.5
+  brightness: 0.2
+  brightness_prob: 0.5
+  contrast: 0.2
+  contrast_prob: 0.5
+  saturation: 0.2
+  saturation_prob: 0.5
+  hue: 0.05
+  hue_prob: 0.3
+  gaussian_blur_prob: 0.3
+  gaussian_blur_sigma: [0.1, 1.0]
+  gaussian_noise_prob: 0.3
+  gaussian_noise_std: [0.0, 0.02]
+  jpeg_prob: 0.2
+  jpeg_quality: [70, 100]
+
+resolution_degradation:
+  enabled: false
+
+valid_mask:
+  enabled: true
+  source: auto
+  black_pixel_tolerance: 0
+  da_full_tile_min_valid_fraction: 0.95
+  crop_min_valid_fraction: 0.25
+  target_min_valid_fraction: 0.5
+  prediction_min_valid_fraction: null
+
+stages:
+  - name: decoder_only
+    max_iterations: 15000
+    eval_interval: 1000
+    checkpoint_interval: 1000
+    train_log_interval: 20
+    train_lora: false
+    optimizer:
+      name: AdamW
+      decoder_lr: 7.5e-5
+      decoder_weight_decay: 3.25e-5
+      lora_lr: null
+      lora_weight_decay: 0.0
+      warmup_iterations: 500
+      min_lr_factor: 0.0125
+
+validation:
+  selection_metric: mae_gt_10m
+  batch_size: 2
+  canopy_thresholds_m: [1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 30.0]
+  # Null paths/names resolve to the NEON training data above (logging only).
+  synthetic:
+    data_root_path: null
+    dataset_names: null
+    fold: valid
+  # The trainer selects checkpoints from validation.real, so point it at the
+  # same newly tiled valid fold rather than the final benchmark labels.
+  real:
+    data_root_path: ${SYNTHFOREST_DATA_ROOT}
+    dataset_names: [NEON_CHM_1m_real_tiles]
+    fold: valid
+    metric_resolution:
+      enabled: true
+      rgb_gsd_m: 0.5
+      height_gsd_m: 1
+      downsample_factor: null
+      min_valid_fraction: 0.5
+      downsample_interpolation: area
+      upsample_interpolation: nearest
+    max_products_per_dataset: null
+    max_tiles_per_product: null
+
+wandb:
+  enabled: true
+  project: synthforest_CHE
+  entity: null
+  tags: [dinov3-vitl16, dpt-height, neon-real-only-50cm, frozen-backbone, da]
+  mode: null
+  log_artifacts: false
+  required: false
+
+domain_adaptation:
+  enabled: true
+  reference_root_path: ${SYNTHFOREST_DATA_ROOT}/NEON_CHM_1m_real_eval/valid_reference_images
+  methods: [PDA]
+  prob: 1.0
+  max_reference_images: 1200
+  fda_beta_limit: [0.01, 0.05]
+  hm_blend_ratio: [0.8, 1.0]
+  pda_blend_ratio: [0.3, 0.5]
+  pda_type: standard

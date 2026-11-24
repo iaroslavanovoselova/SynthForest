@@ -1,0 +1,40 @@
+# Use after `synthforest data prepare virtual-shizuoka`.
+# Run `synthforest prepare tiles --config-name convert_scenes_to_tiles_shizuoka_height`.
+
+annotations_dir: null
+labels_gdf_dir: null
+
+images_dir: ${oc.env:SYNTHFOREST_DATA_ROOT,data}/CHM_rasters_20cm/virtual-shizuoka_CHM/scenes/images
+height_maps_dir: ${oc.env:SYNTHFOREST_DATA_ROOT,data}/CHM_rasters_20cm/virtual-shizuoka_CHM/scenes/height_maps
+output_root: ${oc.env:SYNTHFOREST_DATA_ROOT,data}/CHM_tiles_20cm
+product_name: virtual_shizuoka_height_50cm
+
+export_mode: height
+
+convert_to_crs_coordinates: false
+save_converted_gdf_dir: null
+categories_json: null
+
+tile_size: 256
+tile_overlap: 0.0
+ground_resolution: null
+scale_factor: null
+ignore_black_white_alpha_tiles_threshold: 0.5
+height_ignore_black_white_alpha_tiles_threshold: 1.01
+drop_edge_tiles: false
+write_valid_mask: true
+valid_mask_mode: alpha
+ignore_tiles_without_labels: false
+
+train_ratio: 0.99
+aoi_type: band
+
+main_label_category_column_name: category_name
+force_single_tree_category: true
+single_tree_category_name: tree
+single_tree_category_id: 1
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null

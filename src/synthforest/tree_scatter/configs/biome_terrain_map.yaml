@@ -1,0 +1,199 @@
+biome_terrain_map:
+  eu_coniferous:
+    - forest-floor__bq_pps_Forest-debris_Coniferous_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest-debris_Mixed_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns_C_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns-grass_B_spring-summer-autumn.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_C_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Tortula-ruralis_C_spring-summer-autumn.png
+
+  eu_deciduous:
+    - forest-floor__bq_pps_Forest-debris_Deciduous_A_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest-debris_Mixed_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns-grass_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Mushrooms_B_spring-summer-autumn.png
+    - grass__bq_pps_Grass_Basic_A_spring-summer.png
+    - grass__bq_pps_Grass_Cut_A_spring-summer.png
+    - grass__bq_pps_Grass_Decorative_B_spring-summer.png
+    - grass__bq_pps_Grass_Dry-with-leaves_A_summer-autumn.png
+    - grass__bq_pps_Grass_European-Meadow_A_spring-summer.png
+    - grass__bq_pps_Grass_European-Meadow_B_spring-summer.png
+    - grass__bq_pps_Grass_Lawn-Semi-Dry_A_summer-autumn.png
+    - grass__bq_pps_Grass_Leaves_A_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - misc__bq_pps_Misc_Fallen-Leaves_A_autumn.png
+    - misc__bq_pps_Misc_Fallen-Leaves_B_autumn.png
+    - weeds__bq_pps_Weeds_Pasture_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Pasture_C_spring-summer.png
+    - weeds__bq_pps_Weeds_Tall_B_spring-summer.png
+
+  eu_mixed:
+    - forest-floor__bq_pps_Forest-debris_Coniferous_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest-debris_Deciduous_A_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest-debris_Mixed_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns_C_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns-grass_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Mushrooms_B_spring-summer-autumn.png
+    - grass__bq_pps_Grass_Basic_A_spring-summer.png
+    - grass__bq_pps_Grass_Cut_A_spring-summer.png
+    - grass__bq_pps_Grass_Decorative_B_spring-summer.png
+    - grass__bq_pps_Grass_Dry-with-leaves_A_summer-autumn.png
+    - grass__bq_pps_Grass_European-Meadow_A_spring-summer.png
+    - grass__bq_pps_Grass_European-Meadow_B_spring-summer.png
+    - grass__bq_pps_Grass_Lawn-Semi-Dry_A_summer-autumn.png
+    - grass__bq_pps_Grass_Leaves_A_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - misc__bq_pps_Misc_Fallen-Leaves_A_autumn.png
+    - misc__bq_pps_Misc_Fallen-Leaves_B_autumn.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_C_spring-summer-autumn.png
+    - weeds__bq_pps_Weeds_Alpine-Meadow_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Tall_B_spring-summer.png
+
+  na_coniferous:
+    - forest-floor__bq_pps_Forest-debris_Coniferous_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest-debris_Mixed_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns_C_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns-grass_B_spring-summer-autumn.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_C_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Tortula-ruralis_C_spring-summer-autumn.png
+
+  na_deciduous:
+    - forest-floor__bq_pps_Forest-debris_Deciduous_A_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest-debris_Mixed_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns-grass_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Mushrooms_B_spring-summer-autumn.png
+    - grass__bq_pps_Grass_Basic_A_spring-summer.png
+    - grass__bq_pps_Grass_Cut_A_spring-summer.png
+    - grass__bq_pps_Grass_Decorative_B_spring-summer.png
+    - grass__bq_pps_Grass_Dry-with-leaves_A_summer-autumn.png
+    - grass__bq_pps_Grass_European-Meadow_A_spring-summer.png
+    - grass__bq_pps_Grass_European-Meadow_B_spring-summer.png
+    - grass__bq_pps_Grass_Lawn-Semi-Dry_A_summer-autumn.png
+    - grass__bq_pps_Grass_Leaves_A_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - misc__bq_pps_Misc_Fallen-Leaves_A_autumn.png
+    - misc__bq_pps_Misc_Fallen-Leaves_B_autumn.png
+    - weeds__bq_pps_Weeds_Pasture_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Pasture_C_spring-summer.png
+
+  na_mixed:
+    - forest-floor__bq_pps_Forest-debris_Coniferous_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest-debris_Deciduous_A_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest-debris_Mixed_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns_C_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns-grass_B_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Mushrooms_B_spring-summer-autumn.png
+    - grass__bq_pps_Grass_Basic_A_spring-summer.png
+    - grass__bq_pps_Grass_Cut_A_spring-summer.png
+    - grass__bq_pps_Grass_Decorative_B_spring-summer.png
+    - grass__bq_pps_Grass_Dry-with-leaves_A_summer-autumn.png
+    - grass__bq_pps_Grass_European-Meadow_A_spring-summer.png
+    - grass__bq_pps_Grass_European-Meadow_B_spring-summer.png
+    - grass__bq_pps_Grass_Lawn-Semi-Dry_A_summer-autumn.png
+    - grass__bq_pps_Grass_Leaves_A_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - misc__bq_pps_Misc_Fallen-Leaves_A_autumn.png
+    - misc__bq_pps_Misc_Fallen-Leaves_B_autumn.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_A_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_B_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_C_spring-summer-autumn.png
+
+  af_tropical:
+    - forest-floor__bq_pps_Forest_Ferns_C_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns-grass_B_spring-summer-autumn.png
+    - grass__bq_pps_Grass_Basic_A_spring-summer.png
+    # - grass__bq_pps_Grass_Cenchrus-purpureus_C_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - grass__bq_pps_Grass_Tall-bromus_A_spring-summer.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_A_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_B_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_C_spring-summer-autumn.png
+    - weeds__bq_pps_Weeds_European-Wet-Meadow_A_spring-summer.png
+    - weeds__bq_pps_Weeds_European-Wet-Meadow_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Riverbank_A_spring-summer.png
+    - weeds__bq_pps_Weeds_Riverbank_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Swamp_C_spring-summer.png
+
+  sa_tropical:
+    - forest-floor__bq_pps_Forest_Ferns_C_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns-grass_B_spring-summer-autumn.png
+    - grass__bq_pps_Grass_Cut_A_spring-summer.png
+    # - grass__bq_pps_Grass_Cenchrus-purpureus_C_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - grass__bq_pps_Grass_Tall-bromus_A_spring-summer.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_A_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_B_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_C_spring-summer-autumn.png
+    - weeds__bq_pps_Weeds_European-Wet-Meadow_A_spring-summer.png
+    - weeds__bq_pps_Weeds_European-Wet-Meadow_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Riverbank_A_spring-summer.png
+    - weeds__bq_pps_Weeds_Riverbank_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Swamp_C_spring-summer.png
+
+  as_tropical:
+    - forest-floor__bq_pps_Forest_Ferns_C_spring-summer-autumn.png
+    - forest-floor__bq_pps_Forest_Ferns-grass_B_spring-summer-autumn.png
+    - grass__bq_pps_Grass_Basic_A_spring-summer.png
+    # - grass__bq_pps_Grass_Cenchrus-purpureus_C_spring-summer.png
+    - grass__bq_pps_Grass_Cut_A_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - grass__bq_pps_Grass_Tall-bromus_A_spring-summer.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_A_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_B_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Rhytidiadelphus_C_spring-summer-autumn.png
+    - weeds__bq_pps_Weeds_European-Wet-Meadow_A_spring-summer.png
+    - weeds__bq_pps_Weeds_European-Wet-Meadow_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Riverbank_A_spring-summer.png
+    - weeds__bq_pps_Weeds_Riverbank_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Swamp_C_spring-summer.png
+
+  mangrove:
+    # - grass__bq_pps_Grass_Cenchrus-purpureus_C_spring-summer.png
+    - grass__bq_pps_Grass_Tall-bromus_A_spring-summer.png
+    - grass__bq_pps_Grass_Basic_A_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - weeds__bq_pps_Weeds_European-Wet-Meadow_A_spring-summer.png
+    - weeds__bq_pps_Weeds_European-Wet-Meadow_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Riverbank_A_spring-summer.png
+    - weeds__bq_pps_Weeds_Riverbank_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Swamp_B_spring-summer.png
+    - weeds__bq_pps_Weeds_Swamp_C_spring-summer.png
+
+  savanna_woodland:
+    # - grass__bq_pps_Grass_Cenchrus-purpureus_C_spring-summer.png
+    - grass__bq_pps_Grass_Digitaria-dry_A_autumn.png
+    - grass__bq_pps_Grass_Dry-field_C_spring-summer.png
+    - grass__bq_pps_Grass_Dry-with-leaves_A_summer-autumn.png
+    - grass__bq_pps_Grass_Dry_A_summer-autumn.png
+    - grass__bq_pps_Grass_Muhlenbergia-dry_A_spring-summer-autumn.png
+    - grass__bq_pps_Grass_Tall-bromus_A_spring-summer.png
+    - grass__bq_pps_Grass_Lawn-Semi-Dry_A_summer-autumn.png
+    - grass__bq_pps_Grass_Strands-Bent_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Mixed_B_spring-summer.png
+    - grass__bq_pps_Grass_Strands-Straight_C_spring-summer.png
+    - moss__bq_pps_Moss_Tortula-ruralis_A_spring-summer-autumn.png
+    - moss__bq_pps_Moss_Tortula-ruralis_C_spring-summer-autumn.png
+    - weeds__bq_pps_Weeds_Steppe_B_summer-autumn.png
+    - weeds__bq_pps_Weeds_Steppe_C_spring-summer.png

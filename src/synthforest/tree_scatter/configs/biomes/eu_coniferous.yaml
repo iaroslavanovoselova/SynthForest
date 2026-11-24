@@ -1,0 +1,59 @@
+terrain:
+  size: 100.0
+  subdivisions: 200
+  noise_scale: 0.032
+  detail: 1.9
+  roughness: 0.24
+  elevation_min: -3.5
+  elevation_max: 6.0
+  color: [0.24, 0.28, 0.16, 1.0]
+
+scatter:
+  botaniq_species_role_pools:
+    dominant:
+      - Picea abies
+      - Larix decidua
+      - Pinus pinaster
+    companion:
+      - Taxus baccata
+      - Chamaecyparis lawsoniana
+      - Cedrus brevifolia
+      - Cedrus deodara
+      - Picea obovata
+    rare:
+      - Sciadopitys verticillata
+      - Podocarpus macrophyllus
+      - Pseudotsuga menziesii
+      - Abies concolor
+      - Pinus ponderosa
+  botaniq_role_count_ranges:
+    dominant: [1, 2]
+    companion: [1, 4]
+    rare: [0, 3]
+  botaniq_role_abundance_ranges:
+    dominant: [0.58, 0.82]
+    companion: [0.16, 0.36]
+    rare: [0.01, 0.08]
+  botaniq_role_dirichlet_alpha:
+    dominant: 3.2
+    companion: 1.5
+    rare: 0.8
+  scatter_density_min: 0.60
+  scatter_density_max: 1.00
+  crown_area_fill_factor: 0.82
+  canopy_overlap_efficiency: 1.0
+  canopy_closure_at_full_density: 0.88
+  canopy_closure_gamma: 1.40
+  poisson_packing_efficiency: 0.85
+  stem_spacing_crown_fraction_floor: 0.45
+  density_noise_scale: 0.065
+  density_threshold: 0.40
+  density_variation_strength: 0.82
+  density_cluster_exponent: 1.65
+  density_variation_min_at_full_density: 0.25
+  density_variation_fade_power: 2.0
+  density_threshold_fade_strength: 0.50
+  density_cluster_exponent_min_at_full_density: 1.20
+  tree_scale_min: 0.92
+  tree_scale_max: 1.14
+  tree_variants: 24

@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synthforest"
+version = "0.1.0"
+description = "SynthForest: procedural synthetic forest generation and synthetic-to-real canopy-height estimation and tree-crown delineation."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  { name = "Iaroslava Novoselova" },
+  { name = "Jian Song" },
+  { name = "Naoto Yokoya" },
+]
+keywords = ["remote sensing", "synthetic data", "forest vision", "canopy height"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "hydra-core>=1.3,<2",
+  "numpy>=2.0,<3",
+  "Pillow>=10,<13",
+  "PyYAML>=6,<7",
+  "scipy>=1.14,<2",
+  "scikit-image>=0.24,<1",
+]
+
+[project.optional-dependencies]
+training = [
+  "albumentations>=1.4,<3",
+  "faster-coco-eval>=1.6,<2",
+  "peft>=0.17,<1",
+  "pycocotools>=2,<3",
+  "safetensors>=0.4,<1",
+  "torch>=2.8,<3",
+  "torchmetrics>=1.6,<2",
+  "torchvision>=0.23,<1",
+  "transformers>=4.56,<6",
+  "wandb>=0.19,<1",
+]
+geospatial = [
+  "geodataset @ git+https://github.com/hugobaudchon/geodataset.git@v0.6.5",
+  "geopandas>=1.0,<2",
+  "pandas>=2.2,<4",
+  "rasterio>=1.4,<2",
+  "shapely>=2,<3",
+]
+publishing = ["huggingface-hub>=0.30,<2"]
+dev = [
+  "build>=1.2,<2",
+  "pytest>=8,<10",
+  "ruff>=0.12,<1",
+]
+
+[project.scripts]
+synthforest = "synthforest.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+synthforest = [
+  "tree_scatter/configs/*.yaml",
+  "tree_scatter/configs/biomes/*.yaml",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"

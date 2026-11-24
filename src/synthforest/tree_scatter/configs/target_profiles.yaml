@@ -1,0 +1,249 @@
+profiles:
+  small_medium_crowns:
+    description: Small-to-medium crown profile for NEON/OAM/SelvaBox-like transfer.
+    forest_type_weights:
+      sa_tropical: 1.0
+      as_tropical: 1.0
+      na_coniferous: 1.0
+      eu_coniferous: 0.8
+      na_mixed: 0.7
+      eu_mixed: 0.5
+      savanna_woodland: 0.8
+      af_tropical: 0.4
+      mangrove: 0.3
+      eu_deciduous: 0.0
+      na_deciduous: 0.0
+    quality_gates:
+      bbox_eq_diameter_m_p05_max: 1.8
+      bbox_eq_diameter_m_p50_range: [3.0, 5.5]
+      bbox_eq_diameter_m_p95_range: [8.0, 12.0]
+      low_density_or_empty_tile_fraction_min: 0.10
+      low_density_or_empty_tile_fraction_max: 0.60
+    overrides:
+      scatter:
+        tree_scale_min: 0.55
+        tree_scale_max: 0.90
+        botaniq_variant_scale_min: 0.55
+        botaniq_variant_scale_max: 1.00
+        botaniq_height_to_crown_scale_power: 0.45
+        crown_area_fill_factor: 0.50
+        canopy_closure_at_full_density: 0.82
+        canopy_closure_gamma: 1.20
+        stem_spacing_crown_fraction_floor: 0.35
+        scatter_density_band_weights:
+          dense: 0.35
+          medium: 0.40
+          sparse: 0.25
+        density_variation_strength: 0.85
+        density_cluster_exponent: 1.60
+      mask_postprocess:
+        min_visible_area_m2: 0.25
+        min_final_area_m2: 0.40
+        min_component_area_m2: 0.08
+        gap_fill_radius_m: 0.25
+        boundary_smooth_radius_m: 0.15
+        boundary_component_merge_radius_m: 0.45
+        boundary_component_min_area_m2: 0.08
+        ordered_outer_envelope_min_area_m2: 0.60
+        ordered_outer_envelope_radius_m: 0.25
+      terrain:
+        context:
+          context_mode_weights_by_density_band:
+            dense:
+              none: 0.80
+              trails_only: 0.10
+              river_only: 0.05
+              river_and_trail: 0.05
+            medium:
+              none: 0.10
+              trails_only: 0.30
+              river_only: 0.15
+              river_and_trail: 0.30
+              sparse_rural_artifacts: 0.15
+            sparse:
+              none: 0.05
+              trails_only: 0.15
+              river_only: 0.10
+              river_and_trail: 0.35
+              sparse_rural_artifacts: 0.35
+          context_profile_weights_by_density_band:
+            dense:
+              forest_sparse_context: 1.0
+            medium:
+              forest_sparse_context: 0.45
+              forest_river_bias: 0.35
+              forest_sparse_buildings: 0.20
+            sparse:
+              forest_sparse_context: 0.10
+              forest_river_bias: 0.10
+              forest_sparse_buildings: 0.45
+              forest_rural_building_dominant: 0.35
+
+  large_closed_canopy:
+    description: Large closed-canopy crown profile for Detectree2/SelvaBox-like transfer.
+    forest_type_weights:
+      af_tropical: 1.2
+      sa_tropical: 1.2
+      as_tropical: 0.8
+      eu_deciduous: 0.5
+      na_deciduous: 0.5
+      eu_mixed: 0.4
+      na_mixed: 0.4
+      eu_coniferous: 0.1
+      na_coniferous: 0.1
+      mangrove: 0.0
+      savanna_woodland: 0.0
+    quality_gates:
+      bbox_eq_diameter_m_p50_range: [8.0, 14.0]
+      bbox_eq_diameter_m_p95_min: 18.0
+      canopy_cover_mean_range: [0.55, 0.95]
+      bbox_overlap_fraction_mean_min: 0.50
+    overrides:
+      scatter:
+        tree_scale_min: 1.05
+        tree_scale_max: 1.45
+        botaniq_variant_scale_min: 0.85
+        botaniq_variant_scale_max: 1.20
+        botaniq_height_to_crown_scale_power: 0.65
+        crown_area_fill_factor: 0.78
+        canopy_closure_at_full_density: 0.93
+        canopy_closure_gamma: 1.25
+        stem_spacing_crown_fraction_floor: 0.35
+        scatter_density_band_weights:
+          dense: 0.60
+          medium: 0.30
+          sparse: 0.10
+        density_variation_strength: 0.80
+        density_cluster_exponent: 1.55
+      mask_postprocess:
+        min_visible_area_m2: 1.00
+        min_final_area_m2: 1.50
+        gap_fill_radius_m: 0.75
+        boundary_smooth_radius_m: 0.45
+        boundary_component_merge_radius_m: 1.50
+        ordered_absorb_overlap_fraction: 0.55
+        ordered_outer_envelope_radius_m: 0.90
+      terrain:
+        context:
+          context_mode_weights_by_density_band:
+            dense:
+              none: 0.90
+              trails_only: 0.05
+              river_only: 0.05
+            medium:
+              none: 0.40
+              trails_only: 0.20
+              river_only: 0.20
+              river_and_trail: 0.15
+              sparse_rural_artifacts: 0.05
+            sparse:
+              none: 0.15
+              trails_only: 0.20
+              river_only: 0.15
+              river_and_trail: 0.35
+              sparse_rural_artifacts: 0.15
+          context_profile_weights_by_density_band:
+            dense:
+              forest_sparse_context: 1.0
+            medium:
+              forest_sparse_context: 0.60
+              forest_river_bias: 0.35
+              forest_sparse_buildings: 0.05
+            sparse:
+              forest_sparse_context: 0.15
+              forest_river_bias: 0.30
+              forest_sparse_buildings: 0.35
+              forest_rural_building_dominant: 0.20
+
+  hard_negative_sparse_context:
+    description: Empty-to-very-sparse terrain/context profile for false-positive hard negatives.
+    forest_type_weights:
+      savanna_woodland: 2.0
+      eu_mixed: 0.7
+      na_mixed: 0.7
+      eu_coniferous: 0.5
+      na_coniferous: 0.5
+      eu_deciduous: 0.3
+      na_deciduous: 0.3
+      af_tropical: 0.2
+      sa_tropical: 0.2
+      as_tropical: 0.2
+      mangrove: 0.0
+    quality_gates:
+      low_density_or_empty_tile_fraction_min: 0.75
+      low_density_or_empty_tile_fraction_max: 1.00
+      canopy_cover_mean_range: [0.00, 0.12]
+      bbox_eq_diameter_m_p95_max: 10.0
+    overrides:
+      scatter:
+        scatter_density_min: 0.0
+        scatter_density_max: 0.60
+        scatter_density_step: 0.02
+        scatter_density_band_weights:
+          dense: 0.10
+          medium: 0.20
+          sparse: 0.70
+        tree_scale_min: 0.55
+        tree_scale_max: 0.95
+        botaniq_variant_scale_min: 0.55
+        botaniq_variant_scale_max: 1.00
+        botaniq_height_to_crown_scale_power: 0.45
+        crown_area_fill_factor: 0.42
+        canopy_closure_at_full_density: 0.55
+        canopy_closure_gamma: 1.65
+        stem_spacing_crown_fraction_floor: 0.70
+        density_noise_scale: 0.08
+        density_threshold: 0.58
+        density_variation_strength: 0.95
+        density_cluster_exponent: 2.40
+        density_variation_min_at_full_density: 0.20
+        density_threshold_fade_strength: 0.35
+        density_cluster_exponent_min_at_full_density: 1.60
+      mask_postprocess:
+        min_visible_area_m2: 0.35
+        min_final_area_m2: 0.60
+        min_component_area_m2: 0.12
+        gap_fill_radius_m: 0.20
+        boundary_smooth_radius_m: 0.12
+        boundary_component_merge_radius_m: 0.35
+        boundary_component_min_area_m2: 0.10
+        ordered_outer_envelope_min_area_m2: 0.70
+        ordered_outer_envelope_radius_m: 0.20
+      terrain:
+        context:
+          context_reference_size: 90.0
+          context_mode_weights_by_density_band:
+            dense:
+              none: 0.65
+              trails_only: 0.10
+              river_only: 0.05
+              river_and_trail: 0.10
+              sparse_rural_artifacts: 0.10
+            medium:
+              none: 0.45
+              trails_only: 0.15
+              river_only: 0.10
+              river_and_trail: 0.10
+              sparse_rural_artifacts: 0.20
+            sparse:
+              none: 0.40
+              trails_only: 0.15
+              river_only: 0.10
+              river_and_trail: 0.10
+              sparse_rural_artifacts: 0.25
+          context_profile_weights_by_density_band:
+            dense:
+              forest_sparse_context: 0.40
+              forest_river_bias: 0.20
+              forest_sparse_buildings: 0.20
+              forest_rural_building_dominant: 0.20
+            medium:
+              forest_sparse_context: 0.25
+              forest_river_bias: 0.20
+              forest_sparse_buildings: 0.30
+              forest_rural_building_dominant: 0.25
+            sparse:
+              forest_sparse_context: 0.20
+              forest_river_bias: 0.15
+              forest_sparse_buildings: 0.35
+              forest_rural_building_dominant: 0.30

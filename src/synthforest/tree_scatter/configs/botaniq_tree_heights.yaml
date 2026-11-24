@@ -1,0 +1,465 @@
+schema: synthforest.botaniq_tree_heights.v2
+description: >
+  Full-pack botaniq species height priors for runtime variant scaling.
+  Ranges are realistic mature-tree targets, softly calibrated toward the eval
+  CHM datasets: NEON median canopy heights are roughly 5.7-20.8 m, NEON median
+  p95 heights roughly 8.9-27.4 m, and São Paulo tree pixels have p50 12.7 m,
+  p75 16.2 m, p95 26.5 m, and p99 34.6 m. The mode is sampled with a triangular
+  distribution so normal variants cluster near plausible canopy heights while
+  preserving species morphology and occasional tall emergents.
+
+eval_dataset_priors:
+  neon_site_medians:
+    canopy_height_m_min: 5.7
+    canopy_height_m_median: 10.4
+    canopy_height_m_max: 20.8
+    p95_height_m_min: 8.9
+    p95_height_m_median: 17.9
+    p95_height_m_max: 27.4
+    p99_height_m_min: 12.7
+    p99_height_m_median: 21.5
+    p99_height_m_max: 29.7
+    tile_max_height_m_median: 35.6
+  sao_paulo_tree_pixels:
+    p50_height_m: 12.7
+    p75_height_m: 16.2
+    p95_height_m: 26.5
+    p99_height_m: 34.6
+    tree_area_fraction: 0.733
+
+species:
+  abies concolor:
+    species_label: Abies concolor
+    common_name: White fir
+    height_min_m: 15.3
+    height_mode_m: 22.1
+    height_max_m: 36.0
+
+  acer pseudoplatanus:
+    species_label: Acer pseudoplatanus
+    common_name: Sycamore maple
+    height_min_m: 11.9
+    height_mode_m: 18.7
+    height_max_m: 30.0
+
+  aesculus californica:
+    species_label: Aesculus californica
+    common_name: California buckeye
+    height_min_m: 4.0
+    height_mode_m: 7.0
+    height_max_m: 12.0
+
+  aesculus hippocastanum:
+    species_label: Aesculus hippocastanum
+    common_name: Horse-chestnut
+    height_min_m: 10.2
+    height_mode_m: 17.0
+    height_max_m: 28.0
+
+  alnus glutinosa:
+    species_label: Alnus glutinosa
+    common_name: Common alder
+    height_min_m: 10.8
+    height_mode_m: 16.2
+    height_max_m: 26.0
+
+  areca catechu:
+    species_label: Areca catechu
+    common_name: Areca palm
+    height_min_m: 9.0
+    height_mode_m: 14.4
+    height_max_m: 22.0
+
+  bambusa vulgaris:
+    species_label: Bambusa vulgaris
+    common_name: Golden bamboo
+    height_min_m: 5.0
+    height_mode_m: 10.0
+    height_max_m: 18.0
+
+  beaucarnea recurvata:
+    species_label: Beaucarnea recurvata
+    common_name: Elephant's-foot
+    height_min_m: 2.0
+    height_mode_m: 5.0
+    height_max_m: 9.0
+
+  bertholletia excelsa:
+    species_label: Bertholletia excelsa
+    common_name: Brazil nut
+    height_min_m: 20.0
+    height_mode_m: 25.6
+    height_max_m: 42.0
+
+  betula pendula:
+    species_label: Betula pendula
+    common_name: Silver birch
+    height_min_m: 10.8
+    height_mode_m: 16.2
+    height_max_m: 26.0
+
+  borassus flabellifer:
+    species_label: Borassus flabellifer
+    common_name: Asian palmyra palm
+    height_min_m: 10.8
+    height_mode_m: 16.2
+    height_max_m: 25.0
+
+  carpinus betulus:
+    species_label: Carpinus betulus
+    common_name: European hornbeam
+    height_min_m: 9.0
+    height_mode_m: 14.4
+    height_max_m: 24.0
+
+  cedrus brevifolia:
+    species_label: Cedrus brevifolia
+    common_name: Cyprus cedar
+    height_min_m: 9.0
+    height_mode_m: 14.4
+    height_max_m: 25.0
+
+  cedrus deodara:
+    species_label: Cedrus deodara
+    common_name: Deodar cedar
+    height_min_m: 14.4
+    height_mode_m: 22.4
+    height_max_m: 38.0
+
+  ceiba pentandra:
+    species_label: Ceiba pentandra
+    common_name: Kapok tree
+    height_min_m: 16.0
+    height_mode_m: 25.6
+    height_max_m: 42.0
+
+  celtis occidentalis:
+    species_label: Celtis occidentalis
+    common_name: Common hackberry
+    height_min_m: 9.0
+    height_mode_m: 14.4
+    height_max_m: 24.0
+
+  chamaecyparis lawsoniana:
+    species_label: Chamaecyparis lawsoniana
+    common_name: Lawson's cypress
+    height_min_m: 10.2
+    height_mode_m: 17.0
+    height_max_m: 30.0
+
+  citrus medica:
+    species_label: Citrus medica
+    common_name: Citron
+    height_min_m: 3.0
+    height_mode_m: 5.0
+    height_max_m: 8.0
+
+  citrus × limon:
+    species_key: Citrus × limon
+    species_label: Citrus × limon
+    common_name: Lemon
+    height_min_m: 3.0
+    height_mode_m: 5.0
+    height_max_m: 7.0
+
+  cocos nucifera:
+    species_label: Cocos nucifera
+    common_name: Coconut palm
+    height_min_m: 10.2
+    height_mode_m: 17.0
+    height_max_m: 28.0
+
+  corymbia aparrerinja:
+    species_label: Corymbia aparrerinja
+    common_name: Ghost gum
+    height_min_m: 9.0
+    height_mode_m: 16.2
+    height_max_m: 28.0
+
+  fagus sylvatica:
+    species_label: Fagus sylvatica
+    common_name: European beech
+    height_min_m: 13.6
+    height_mode_m: 20.4
+    height_max_m: 32.0
+
+  ficus carica:
+    species_label: Ficus carica
+    common_name: Common fig
+    height_min_m: 4.0
+    height_mode_m: 8.0
+    height_max_m: 12.0
+
+  fraxinus excelsior:
+    species_label: Fraxinus excelsior
+    common_name: European ash
+    height_min_m: 11.9
+    height_mode_m: 18.7
+    height_max_m: 30.0
+
+  heteromeles arbutifolia:
+    species_label: Heteromeles arbutifolia
+    common_name: Toyon
+    height_min_m: 3.0
+    height_mode_m: 6.0
+    height_max_m: 9.0
+
+  juglans regia:
+    species_label: Juglans regia
+    common_name: Persian walnut
+    height_min_m: 9.0
+    height_mode_m: 14.4
+    height_max_m: 24.0
+
+  juniperus osteosperma:
+    species_label: Juniperus osteosperma
+    common_name: Utah juniper
+    height_min_m: 4.0
+    height_mode_m: 7.0
+    height_max_m: 12.0
+
+  larix decidua:
+    species_label: Larix decidua
+    common_name: European larch
+    height_min_m: 15.3
+    height_mode_m: 22.1
+    height_max_m: 34.0
+
+  larix kaempferi:
+    species_label: Larix kaempferi
+    common_name: Japanese larch
+    height_min_m: 15.3
+    height_mode_m: 21.2
+    height_max_m: 34.0
+
+  malus domestica:
+    species_label: Malus domestica
+    common_name: Apple
+    height_min_m: 4.0
+    height_mode_m: 7.0
+    height_max_m: 10.0
+
+  musa acuminata:
+    species_label: Musa acuminata
+    common_name: Cavendish banana
+    height_min_m: 3.0
+    height_mode_m: 5.0
+    height_max_m: 8.0
+
+  olea europaea:
+    species_label: Olea europaea
+    common_name: Olive
+    height_min_m: 4.0
+    height_mode_m: 7.0
+    height_max_m: 12.0
+
+  phoenix canariensis:
+    species_label: Phoenix canariensis
+    common_name: Canary island palm
+    height_min_m: 9.0
+    height_mode_m: 14.4
+    height_max_m: 22.0
+
+  picea abies:
+    species_label: Picea abies
+    common_name: Norway spruce
+    height_min_m: 15.3
+    height_mode_m: 22.1
+    height_max_m: 36.0
+
+  picea obovata:
+    species_label: Picea obovata
+    common_name: Siberian spruce
+    height_min_m: 13.6
+    height_mode_m: 20.4
+    height_max_m: 32.0
+
+  picea rubens:
+    species_label: Picea rubens
+    common_name: Red spruce
+    height_min_m: 11.9
+    height_mode_m: 17.0
+    height_max_m: 28.0
+
+  pinus jeffreyi:
+    species_label: Pinus jeffreyi
+    common_name: Jeffrey pine
+    height_min_m: 15.3
+    height_mode_m: 22.1
+    height_max_m: 34.0
+
+  pinus pinaster:
+    species_label: Pinus pinaster
+    common_name: Maritime pine
+    height_min_m: 13.6
+    height_mode_m: 20.4
+    height_max_m: 32.0
+
+  pinus ponderosa:
+    species_label: Pinus ponderosa
+    common_name: Western ponderosa pine
+    height_min_m: 15.3
+    height_mode_m: 22.1
+    height_max_m: 36.0
+
+  podocarpus macrophyllus:
+    species_label: Podocarpus macrophyllus
+    common_name: Kusamaki
+    height_min_m: 5.0
+    height_mode_m: 10.0
+    height_max_m: 16.0
+
+  populus tremuloides:
+    species_label: Populus tremuloides
+    common_name: Quaking aspen
+    height_min_m: 11.9
+    height_mode_m: 17.8
+    height_max_m: 28.0
+
+  prunus cerasifera:
+    species_label: Prunus cerasifera
+    common_name: Cherry-plum
+    height_min_m: 4.0
+    height_mode_m: 7.0
+    height_max_m: 10.0
+
+  prunus serrulata:
+    species_label: Prunus serrulata
+    common_name: Japanese cherry
+    height_min_m: 5.0
+    height_mode_m: 8.0
+    height_max_m: 12.0
+
+  pseudotsuga menziesii:
+    species_label: Pseudotsuga menziesii
+    common_name: Douglas-fir
+    height_min_m: 17.6
+    height_mode_m: 25.6
+    height_max_m: 42.0
+
+  quercus agrifolia:
+    species_label: Quercus agrifolia
+    common_name: Coast live oak
+    height_min_m: 7.2
+    height_mode_m: 12.6
+    height_max_m: 22.0
+
+  quercus cerris:
+    species_label: Quercus cerris
+    common_name: Turkey oak
+    height_min_m: 13.6
+    height_mode_m: 20.4
+    height_max_m: 32.0
+
+  quercus robur:
+    species_label: Quercus robur
+    common_name: English oak
+    height_min_m: 13.6
+    height_mode_m: 20.4
+    height_max_m: 32.0
+
+  quercus variabilis:
+    species_label: Quercus variabilis
+    common_name: Chinese cork oak
+    height_min_m: 11.9
+    height_mode_m: 18.7
+    height_max_m: 30.0
+
+  rhapis excelsa:
+    species_label: Rhapis excelsa
+    common_name: Little lady palm
+    height_min_m: 1.0
+    height_mode_m: 3.0
+    height_max_m: 5.0
+
+  rhizophora mangle:
+    species_label: Rhizophora mangle
+    common_name: Red mangrove
+    height_min_m: 4.0
+    height_mode_m: 9.0
+    height_max_m: 16.0
+
+  robinia pseudoacacia:
+    species_label: Robinia pseudoacacia
+    common_name: Black locust
+    height_min_m: 10.8
+    height_mode_m: 16.2
+    height_max_m: 26.0
+
+  roystonea regia:
+    species_label: Roystonea regia
+    common_name: Royal palm
+    height_min_m: 11.9
+    height_mode_m: 18.7
+    height_max_m: 28.0
+
+  sabal palmetto:
+    species_label: Sabal palmetto
+    common_name: Cabbage palmetto
+    height_min_m: 8.0
+    height_mode_m: 13.0
+    height_max_m: 18.0
+
+  salix babylonica:
+    species_label: Salix babylonica
+    common_name: Weeping willow
+    height_min_m: 9.0
+    height_mode_m: 14.4
+    height_max_m: 22.0
+
+  sciadopitys verticillata:
+    species_label: Sciadopitys verticillata
+    common_name: Koyamaki
+    height_min_m: 9.0
+    height_mode_m: 14.4
+    height_max_m: 24.0
+
+  taxus baccata:
+    species_label: Taxus baccata
+    common_name: Common yew
+    height_min_m: 6.0
+    height_mode_m: 10.0
+    height_max_m: 18.0
+
+  theobroma cacao:
+    species_label: Theobroma cacao
+    common_name: Cacao tree
+    height_min_m: 4.0
+    height_mode_m: 7.0
+    height_max_m: 10.0
+
+  tilia cordata:
+    species_label: Tilia cordata
+    common_name: Small-leaved lime
+    height_min_m: 11.9
+    height_mode_m: 17.0
+    height_max_m: 28.0
+
+  tilia × europaea:
+    species_key: Tilia × europaea
+    species_label: Tilia × europaea
+    common_name: Common lime
+    height_min_m: 13.6
+    height_mode_m: 18.7
+    height_max_m: 30.0
+
+  ulmus minor:
+    species_label: Ulmus minor
+    common_name: Field elm
+    height_min_m: 11.9
+    height_mode_m: 18.7
+    height_max_m: 30.0
+
+  vachellia caven:
+    species_label: Vachellia caven
+    common_name: Caven thorn
+    height_min_m: 4.0
+    height_mode_m: 6.0
+    height_max_m: 9.0
+
+  vachellia tortilis:
+    species_label: Vachellia tortilis
+    common_name: Umbrella thorn
+    height_min_m: 5.0
+    height_mode_m: 9.0
+    height_max_m: 14.0

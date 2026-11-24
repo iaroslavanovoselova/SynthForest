@@ -1,0 +1,103 @@
+context_profiles:
+  forest_sparse_context:
+    description: "Mostly forest with sparse trails, optional river context, and no building generation."
+    river_width_min: 4.0
+    river_width_max: 8.5
+    trail_width_min: 1.3
+    trail_width_max: 3.8
+    trail_count_min: 1
+    trail_count_max: 3
+    river_surface_offset: 0.005
+    trail_surface_offset: 0.004
+    exclusion_margin: 1.2
+    trail_tree_buffer_extra: 0.7
+    river_tree_buffer_extra: 1.1
+    waterline_elevation: -2.5
+    rural_clearings_min: 1
+    rural_clearings_max: 2
+    rural_clearing_radius_min: 8.0
+    rural_clearing_radius_max: 18.0
+  forest_river_bias:
+    description: "Forest-first context with stronger river occurrence and very sparse trails."
+    river_width_min: 5.0
+    river_width_max: 11.5
+    trail_width_min: 1.2
+    trail_width_max: 3.4
+    trail_count_min: 1
+    trail_count_max: 2
+    river_surface_offset: 0.005
+    trail_surface_offset: 0.004
+    exclusion_margin: 1.4
+    trail_tree_buffer_extra: 0.9
+    river_tree_buffer_extra: 1.5
+    waterline_elevation: -2.8
+    rural_clearings_min: 1
+    rural_clearings_max: 2
+    rural_clearing_radius_min: 7.0
+    rural_clearing_radius_max: 16.0
+  forest_sparse_buildings:
+    description: "Vegetation-dominant forest with sparse trails/rivers and a few contextual buildings."
+    river_width_min: 5.0
+    river_width_max: 10.5
+    trail_width_min: 1.3
+    trail_width_max: 3.8
+    trail_count_min: 1
+    trail_count_max: 3
+    river_surface_offset: 0.005
+    trail_surface_offset: 0.004
+    exclusion_margin: 1.5
+    trail_tree_buffer_extra: 1.0
+    river_tree_buffer_extra: 1.6
+    buildings_enabled: true
+    building_count_min: 1
+    building_count_max: 3
+    building_width_min: 6.0
+    building_width_max: 20.0
+    building_depth_min: 5.0
+    building_depth_max: 20.0
+    building_height_min: 4
+    building_height_max: 9
+    building_base_offset: 0.02
+    building_max_ground_relief: 0.8
+    building_min_spacing: 5.0
+    building_path_buffer: 10.0
+    building_border_inset_ratio: 0.985
+    building_tree_buffer_extra: 5.5
+    waterline_elevation: -2.8
+    rural_clearings_min: 1
+    rural_clearings_max: 2
+    rural_clearing_radius_min: 6.0
+    rural_clearing_radius_max: 12.0
+  forest_rural_building_dominant:
+    description: "Rural context with larger and more numerous buildings, while retaining natural trails/rivers."
+    river_width_min: 5.5
+    river_width_max: 12.0
+    trail_width_min: 1.4
+    trail_width_max: 4.2
+    trail_count_min: 1
+    trail_count_max: 3
+    river_surface_offset: 0.005
+    trail_surface_offset: 0.004
+    exclusion_margin: 1.7
+    trail_tree_buffer_extra: 1.1
+    river_tree_buffer_extra: 1.8
+    buildings_enabled: true
+    building_count_min: 3
+    building_count_max: 6
+    building_width_min: 10.0
+    building_width_max: 22.0
+    building_depth_min: 8.0
+    building_depth_max: 18.0
+    building_height_min: 5
+    building_height_max: 12
+    building_base_offset: 0.02
+    building_max_ground_relief: 0.9
+    building_min_spacing: 6.0
+    building_path_buffer: 9.0
+    building_border_inset_ratio: 0.975
+    building_tree_buffer_extra: 6.5
+    waterline_elevation: -2.8
+    rural_clearings_min: 1
+    rural_clearings_max: 2
+    rural_clearing_radius_min: 8.0
+    rural_clearing_radius_max: 14.0

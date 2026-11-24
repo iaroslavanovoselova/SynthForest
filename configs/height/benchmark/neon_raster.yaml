@@ -1,0 +1,52 @@
+# NEON held-out test full-raster sliding-window benchmark for a DINOv3 DPT height checkpoint.
+#
+# Use run_folder/checkpoint_path overrides like the tiled benchmark. This config is
+# prediction-ready for side-by-side TIFF rasters named <unique>_RGB.tif and
+# <unique>_CHM.tif.
+# The benchmark directory contains only the held-out NEON test sites.
+
+model_type: dpt_height
+train_config_path: null
+run_folder: null
+checkpoint_name: last.pth
+checkpoint_path: null
+# Used only for standalone --checkpoint benchmarks outside a height run folder.
+output_folder: ${SYNTHFOREST_OUTPUT_ROOT}/heights/raster_benchmarks
+benchmark_name: null
+
+rasters: []
+rgb_root_path: ${SYNTHFOREST_DATA_ROOT}/NEON_CHM_1m_real_all/benchmark
+# If null, only prediction (no metrics)
+height_root_path: ${SYNTHFOREST_DATA_ROOT}/NEON_CHM_1m_real_all/benchmark
+rgb_glob: "**/*_RGB.tif"
+height_glob: "**/*_CHM.tif"
+rgb_name_suffix: "_RGB"
+height_name_suffix: "_CHM"
+image_suffixes: [.tif, .tiff, .png, .jpg, .jpeg]
+height_suffixes: [.tif, .tiff]
+
+tile_size: 512
+stride: 256
+batch_size: 1
+device: null
+seed: 42
+max_rasters: null
+save_predictions: true
+save_weight_maps: false
+metric_resolution:
+  enabled: true
+  rgb_gsd_m: 0.5
+  height_gsd_m: 1.0
+  downsample_factor: null
+  min_valid_fraction: 0.5
+  downsample_interpolation: area
+  upsample_interpolation: nearest
+
+wandb:
+  enabled: true
+  project: synthforest_CHE_eval
+  entity: null
+  tags: [neon-chm, raster-level,last-chkpt]
+  mode: null
+  log_artifacts: true
+  required: false

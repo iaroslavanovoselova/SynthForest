@@ -1,0 +1,22 @@
+# Full-scene downsampling from canopy-delineation resolution to CHM-estimation resolution.
+source_root: ${oc.env:SYNTHFOREST_OUTPUT_ROOT,outputs}/synthforest/canopy_height/scenes/hard_negative
+output_root: ${oc.env:SYNTHFOREST_OUTPUT_ROOT,outputs}/synthforest/canopy_height/scenes/hard_negative/downsampled_20cm
+
+source_gsd: 0.10
+target_gsd: 0.20
+
+height_reducer: p90_positive
+min_canopy_fraction: 0.10
+edge_policy: center_crop
+
+images_subdir: images
+height_maps_subdir: height_maps
+canopy_coverage_subdir: canopy_coverage_maps
+manifest_name: downsample_manifest.json
+overwrite: true
+
+# Keep Hydra outputs in-place (do not create timestamped hydra run directories).
+hydra:
+  run:
+    dir: .
+  output_subdir: null

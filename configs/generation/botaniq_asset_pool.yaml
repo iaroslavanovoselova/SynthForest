@@ -1,0 +1,153 @@
+seed: 42
+
+output:
+  pool_dir: ${oc.env:SYNTHFOREST_ASSET_ROOT,data/assets}/botaniq_tree_asset_pool
+  overwrite: true
+  run_name: null
+  append_run_name: true
+  # Two-stage output:
+  # - authoring: live Geometry Nodes modifiers, one modifier per branch group by default.
+  # - production: static baked meshes used by the existing scatter loader.
+  save_authoring: false
+  save_production: true
+  authoring_suffix: _authoring
+  production_suffix: ""
+  recipe_suffix: _recipes
+  # Production applies branch Geometry Nodes into static meshes when true.
+  # Authoring always keeps branch modifiers live.
+  production_apply_modifiers: true
+  # Lay objects out in the saved .blend so the generated collection can be inspected directly.
+  # The asset-pool loader ignores these object XY locations when copying templates for scatter.
+  layout_for_inspection: true
+  inspection_spacing_m: 20.0
+
+generation:
+  variants_per_species: 50
+  # Use [] or ["*"] to generate every tree species available in the configured botaniq pack.
+  species: []
+  # summer | autumn | both
+  season_mode: both
+
+scatter:
+  botaniq_pack_dir: ${oc.env:SYNTHFOREST_ASSET_ROOT,data/assets}/botaniq_full
+  botaniq_include_title_prefixes:
+    - "Tree "
+  botaniq_variant_scale_min: 0.92
+  botaniq_variant_scale_max: 1.08
+  botaniq_variant_height_scale_min: 0.82
+  botaniq_variant_height_scale_max: 1.22
+  botaniq_use_species_height_priors: true
+  botaniq_height_to_crown_scale_power: 0.85
+  botaniq_height_scale_z_max: 3.0
+  botaniq_height_scale_xy_max: 3.0
+  botaniq_height_scale_anisotropy_max: 1.45
+  botaniq_leaf_geometry_preservation_mode: centroid_translate
+  botaniq_variant_quality_resample_attempts: 4
+  botaniq_quality_max_scale_z: 3.0
+  botaniq_quality_max_anisotropy: 1.45
+  botaniq_quality_max_branch_displacement_m: 0.85
+  botaniq_quality_max_leaf_removed_fraction: 0.12
+  botaniq_quality_max_tilt_deg: 4.0
+  botaniq_quality_allow_branch_swaps: false
+  botaniq_variant_tilt_probability: 0.35
+  botaniq_variant_tilt_max_deg: 3.5
+  botaniq_variant_shape_jitter_probability: 0.40
+  botaniq_variant_crown_bend_max_fraction: 0.025
+  botaniq_variant_crown_asymmetry_max: 0.07
+  botaniq_variant_trunk_protected_fraction: 0.25
+  botaniq_branch_variation_enabled: true
+  botaniq_branch_variation_backend: geometry_nodes
+  # Authoring uses one live modifier per bq_branch_group_* so each canopy lobe can be disabled,
+  # copied, removed, or inspected independently. Use "combined" for one GN modifier per tree.
+  botaniq_authoring_modifier_layout: per_branch
+  # Keep false for clear branch authoring. Global bend/tilt remains in the recipe and is baked
+  # in production; setting true also applies those global mesh deforms in authoring.
+  botaniq_authoring_apply_global_deforms: false
+  botaniq_branch_variation_probability: 0.45
+  botaniq_branch_weight_threshold: 0.02
+  botaniq_branch_min_vertices: 128
+  botaniq_branch_radial_scale_min: 0.90
+  botaniq_branch_radial_scale_max: 1.12
+  botaniq_branch_tangential_scale_min: 0.92
+  botaniq_branch_tangential_scale_max: 1.10
+  botaniq_branch_z_scale_min: 0.97
+  botaniq_branch_z_scale_max: 1.04
+  botaniq_branch_rotation_max_deg: 10.0
+  botaniq_branch_tilt_max_deg: 3.0
+  botaniq_branch_lateral_jitter_max_fraction: 0.025
+  botaniq_branch_vertical_jitter_max_fraction: 0.03
+  botaniq_branch_vertical_jitter_max_m: 0.25
+  botaniq_branch_influence_power: 1.05
+  botaniq_branch_tip_influence_power: 0.95
+  botaniq_branch_base_influence_floor: 0.06
+  botaniq_branch_influence_scale_min: 0.85
+  botaniq_branch_influence_scale_max: 1.45
+  # Safety clamp for every branch lobe. This prevents a single outlier branch
+  # from producing long leaf-card ribbons while retaining visible crown variation.
+  botaniq_branch_max_displacement_fraction: 0.16
+  botaniq_branch_max_crown_displacement_fraction: 0.22
+  botaniq_branch_max_displacement_m: 0.85
+  # Pruned lobes are compressed inward, producing missing/weak crown sectors
+  # without deleting geometry or creating detached mesh pieces.
+  botaniq_branch_prune_probability: 0.10
+  botaniq_branch_prune_radial_scale_min: 0.72
+  botaniq_branch_prune_radial_scale_max: 0.90
+  botaniq_branch_prune_tangential_scale_min: 0.82
+  botaniq_branch_prune_tangential_scale_max: 0.98
+  botaniq_branch_prune_pullback_min_fraction: 0.25
+  botaniq_branch_prune_pullback_max_fraction: 0.60
+  botaniq_branch_prune_lateral_multiplier: 1.0
+  botaniq_branch_outlier_probability: 0.05
+  botaniq_branch_outlier_retract_probability: 0.58
+  botaniq_branch_retract_scale_min: 0.42
+  botaniq_branch_retract_scale_max: 0.78
+  botaniq_branch_extend_scale_min: 1.02
+  botaniq_branch_extend_scale_max: 1.18
+  botaniq_branch_outlier_rotation_multiplier: 1.80
+  botaniq_branch_outlier_lateral_multiplier: 1.70
+  botaniq_branch_outlier_vertical_multiplier: 2.0
+  botaniq_branch_swap_probability: 0.0
+  botaniq_branch_swap_strength: 0.75
+  # True sector exchange: paired branch groups are mapped into each other's
+  # original local frame, so group A takes group B's place and group B takes A's.
+  botaniq_branch_swap_frame_strength: 1.0
+  botaniq_branch_swap_translation_strength: 0.4
+  botaniq_branch_swap_translation_max_fraction: 0.20
+  botaniq_branch_swap_z_strength: 0.55
+  botaniq_branch_swap_z_max_m: 0.75
+  botaniq_branch_swap_scale_exchange_strength: 0.45
+  botaniq_branch_swap_max_pairs: 3
+  botaniq_leaf_density_variation_enabled: true
+  botaniq_leaf_density_variation_probability: 0.60
+  botaniq_leaf_keep_ratio_min: 0.92
+  botaniq_leaf_keep_ratio_max: 0.98
+  botaniq_leaf_patch_count_min: 1
+  botaniq_leaf_patch_count_max: 3
+  botaniq_leaf_patch_radius_fraction_min: 0.12
+  botaniq_leaf_patch_radius_fraction_max: 0.28
+  botaniq_leaf_patch_drop_strength_min: 0.03
+  botaniq_leaf_patch_drop_strength_max: 0.10
+  botaniq_leaf_density_max_drop_probability: 0.25
+  botaniq_color_variation_enabled: true
+  botaniq_brightness_jitter: 0.03
+  botaniq_branch_hue_random_min: 0.0
+  botaniq_branch_hue_random_max: 0.004
+  botaniq_leaf_hue_random_min: 0.0
+  botaniq_leaf_hue_random_max: 0.012
+  botaniq_leaf_material_variation_enabled: true
+  botaniq_leaf_material_hue_shift_min: -0.035
+  botaniq_leaf_material_hue_shift_max: 0.030
+  botaniq_leaf_material_saturation_min: 0.88
+  botaniq_leaf_material_saturation_max: 1.12
+  botaniq_leaf_material_value_min: 0.86
+  botaniq_leaf_material_value_max: 1.14
+  botaniq_leaf_material_brightness_min: -0.025
+  botaniq_leaf_material_brightness_max: 0.030
+  botaniq_leaf_material_contrast_min: -0.040
+  botaniq_leaf_material_contrast_max: 0.060
+  # Prepares botaniq leaf materials to read per-instance attributes that
+  # are authored by the scene scatter Geometry Nodes graph.
+  botaniq_instance_leaf_material_variation_enabled: true
+
+logging:
+  file_path: ${oc.env:SYNTHFOREST_OUTPUT_ROOT,outputs}/logs/generation/botaniq_asset_pool

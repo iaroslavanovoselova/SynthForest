@@ -1,0 +1,207 @@
+# DINOv3 Mask R-CNN Mean Teacher with predicted-height fusion at p8 and p16.
+# The EMA teacher and student both receive the same aligned height channel.
+
+data_root_path: ${SYNTHFOREST_OUTPUT_ROOT}/synthforest/crown_delineation/tiles
+train_dataset_names:
+  - hard_negative
+  - large_closed_canopy
+  - small_medium
+  - small_medium_legacy
+test_dataset_names: []
+
+train_output_path: ${SYNTHFOREST_OUTPUT_ROOT}/detectors/training
+run_name: null
+checkpoint_initialization:
+  # last.pth of configs/crowns/training/synthetic_hf.yaml.
+  checkpoint_path: ${SYNTHFOREST_MODEL_ROOT}/synthforest/maskrcnn_syn_hf.pth
+post_training_benchmark:
+  enabled: true
+  config_path: crowns/benchmark/maskrcnn
+  checkpoint_name: last.pth
+  fail_on_error: false
+
+model_type: maskrcnn
+mask_probability_threshold: 0.5
+dinov3_model_dir: ${SYNTHFOREST_MODEL_ROOT}/dinov3-vitl16
+dinov3_model: dinov3_vitl16
+dinov3_pretraining: lvd1689m
+dinov3_embed_dim: 1024
+dinov3_patch_size: 16
+dinov3_use_fake_backbone: false
+backbone_out_channels: 256
+pyramid_strides: [8, 16, 32]
+
+height_fusion:
+  enabled: true
+  height_maps_subdir: height_maps
+  generate_missing: true
+  # Final checkpoint (last.pth) of configs/height/train_syn20.yaml.
+  height_checkpoint_path: ${SYNTHFOREST_MODEL_ROOT}/synthforest/syn20.pth
+  height_train_config_path: height/train_syn20
+  source_gsd_m: 0.05
+  target_gsd_m: 0.20
+  levels: [p8, p16]
+  clip_min_m: 0.0
+  clip_max_m: 60.0
+  mean_m: 30.0
+  std_m: 30.0
+  encoder_hidden_channels: 64
+  fusion_init_scale: 0.1
+  use_uncertainty: false
+  precompute_match_checkpoint: true
+
+lora: null
+
+num_classes: 1
+batch_size: 1
+grad_accumulation_steps: 4
+dataloader_num_workers: 4
+seed: 42
+use_amp: true
+include_empty_images: true
+debug_overfit_batches: 0
+debug_eval_on_train: false
+
+anchor_sizes:
+  - [24, 34, 48]
+  - [68, 96, 136]
+  - [192, 272, 384]
+aspect_ratios: [0.75, 1.0, 1.25]
+box_score_thresh: 0.05
+box_nms_thresh: 0.5
+box_predictions_per_image: 500
+
+augmentation:
+  image_mean: [0.485, 0.456, 0.406]
+  image_std: [0.229, 0.224, 0.225]
+  resize_min_sizes_train: [512, 608, 704, 800, 896, 992]
+  resize_min_size_eval: 992
+  max_size: 992
+  crop_prob: 0.5
+  crop_size_range: [384, 992]
+  crop_min_intersection_ratio: 0.5
+  flip_horizontal: true
+  flip_vertical: true
+  rotation_degrees: 30.0
+  rotation_prob: 0.5
+  brightness: 0.2
+  brightness_prob: 0.5
+  contrast: 0.2
+  contrast_prob: 0.5
+  saturation: 0.2
+  saturation_prob: 0.5
+  hue: 0.05
+  hue_prob: 0.3
+  gaussian_blur_prob: 0.3
+  gaussian_blur_sigma: [0.1, 1.0]
+  gaussian_noise_prob: 0.3
+  gaussian_noise_std: [0.0, 0.02]
+  jpeg_prob: 0.2
+  jpeg_quality: [70, 100]
+  downsample_upsample_prob: 0.2
+  downsample_scale: [0.75, 1.0]
+
+valid_mask:
+  enabled: true
+  source: auto
+  black_pixel_tolerance: 0
+  da_full_tile_min_valid_fraction: 0.95
+  crop_min_valid_fraction: 0.25
+  target_min_valid_fraction: 0.5
+  prediction_min_valid_fraction: 0.6
+
+stages:
+  - name: height_mean_teacher_fpn_p8_p16
+    max_iterations: 8000
+    eval_interval: 500
+    checkpoint_interval: 500
+    train_log_interval: 10
+    train_lora: false
+    semi_supervised: true
+    optimizer:
+      name: AdamW
+      detector_lr: 0.00005
+      detector_weight_decay: 0.0001
+      warmup_iterations: 250
+      min_lr_factor: 0.01
+
+semi_supervised:
+  enabled: true
+  ema_decay: 0.999
+  unsupervised_loss_start_weight: 0.1
+  unsupervised_loss_weight: 0.8
+  unsupervised_loss_ramp_fraction: 0.1
+  unlabeled_real:
+    data_root_path: ${SYNTHFOREST_DATA_ROOT}/canopyrs
+    dataset_names: [SelvaMask, BAMForest]
+    fold: train
+    drop_edge_tiles: false
+    edge_tile_black_pixel_threshold: 0.1
+    edge_tile_black_pixel_tolerance: 0
+    max_products_per_dataset: null
+    max_tiles_per_product: null
+  pseudo_labels:
+    score_threshold: 0.55
+    min_box_size: 16.0
+    min_box_area: 250.0
+    max_labels_per_image: 200
+    valid_mask_min_fraction: 0.6
+    nms_threshold: 0.45
+    include_empty_images: false
+  strong_augmentation:
+    brightness: 0.3
+    brightness_prob: 0.8
+    contrast: 0.3
+    contrast_prob: 0.8
+    saturation: 0.3
+    saturation_prob: 0.8
+    hue: 0.08
+    hue_prob: 0.5
+    gaussian_blur_prob: 0.5
+    gaussian_blur_sigma: [0.1, 1.5]
+    gaussian_noise_prob: 0.5
+    gaussian_noise_std: [0.0, 0.03]
+    jpeg_prob: 0.4
+    jpeg_quality: [50, 95]
+    downsample_upsample_prob: 0.4
+    downsample_scale: [0.5, 1.0]
+
+validation:
+  selection_metric: segm_dense_map
+  map_max_detection_thresholds: [1, 10, 100]
+  dense_eval_max_detections: 500
+  tasks: [bbox, segm]
+  batch_size: 1
+  synthetic:
+    data_root_path: null
+    dataset_names: null
+    fold: valid
+  real:
+    data_root_path: ${SYNTHFOREST_DATA_ROOT}/canopyrs
+    dataset_names: [SelvaMask, BAMForest]
+    fold: valid
+    drop_edge_tiles: false
+    edge_tile_black_pixel_threshold: 0.1
+    edge_tile_black_pixel_tolerance: 0
+    max_products_per_dataset: null
+    max_tiles_per_product: null
+
+wandb:
+  enabled: true
+  project: synthforest_CInst
+  entity: null
+  tags: [dinov3-vitl16-web, maskrcnn, mean-teacher, height-fusion, synth-unlabeled-real, da-all, last-chkpt]
+  mode: null
+  log_artifacts: false
+  required: false
+
+domain_adaptation:
+  enabled: true
+  reference_root_path: ${SYNTHFOREST_DATA_ROOT}/domain_adaptation/crowns
+  methods: [HM, PDA]
+  prob: 0.6
+  max_reference_images: 1200
+  fda_beta_limit: [0.01, 0.05]
+  hm_blend_ratio: [0.8, 1.0]
+  pda_blend_ratio: [0.3, 0.5]
+  pda_type: standard

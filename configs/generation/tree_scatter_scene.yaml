@@ -1,0 +1,126 @@
+output:
+  output_dir: ${oc.env:SYNTHFOREST_OUTPUT_ROOT,outputs}/synthforest/crown_delineation/scenes
+  save_blend: false
+  run_name: null
+  append_run_name: true
+
+generation:
+  num_scenes: 1
+  scene_id_start: 1
+  # Set target_profile_weights: {} to use the legacy forest_type_weights-only sampler.
+  target_profile_weights:
+    small_medium_crowns: 0
+    hard_negative_sparse_context: 0
+    large_closed_canopy: 0
+  forest_type_weights:
+    eu_coniferous: 0.9
+    eu_deciduous: 1.1
+    eu_mixed: 1.3
+    na_coniferous: 1.1
+    na_deciduous: 1.4
+    na_mixed: 1.6
+    af_tropical: 0.7
+    sa_tropical: 0.7
+    as_tropical: 0.9
+    mangrove: 0.2
+    savanna_woodland: 1.4
+
+seed: 42
+
+scatter:
+  # botaniq_asset_pack: load botaniq species directly from the installed asset pack, `botaniq_pack_dir` is required
+  # botaniq_asset_pool: load prebaked production meshes from a botaniq pool manifest, `asset_pool_dir` is required
+  tree_source_mode: botaniq_asset_pool
+  asset_pool_dir: ${oc.env:SYNTHFOREST_ASSET_ROOT,data/assets}/botaniq_tree_asset_pool
+  # botaniq_pack_dir: ${oc.env:SYNTHFOREST_ASSET_ROOT,data/assets}/botaniq_full
+  season_weights:
+    summer: 0.70
+    autumn: 0.30
+  scatter_density_band_weights:
+    dense: 0.25
+    medium: 0.35
+    sparse: 0.40
+  scatter_density_step: 0.05
+  botaniq_height_to_crown_scale_power: 0.50
+  botaniq_variant_scale_min: 0.70
+  botaniq_variant_scale_max: 1.12
+  botaniq_leaf_material_value_min: 0.95
+  botaniq_leaf_material_value_max: 1.35
+  botaniq_leaf_material_brightness_min: -0.01
+  botaniq_leaf_material_brightness_max: 0.12
+  botaniq_scatter_leaf_material_value_min: 0.98
+  botaniq_scatter_leaf_material_value_max: 1.20
+  botaniq_scatter_leaf_material_brightness_min: -0.01
+  botaniq_scatter_leaf_material_brightness_max: 0.06
+
+terrain:
+  terrain_source_mode: context_profile
+  use_texture: true
+  # Populate this folder with `synthforest generate textures`.
+  texture_dir: ${oc.env:SYNTHFOREST_ASSET_ROOT,data/assets}/terrain_textures/botaniq_particles_5cm
+  # Set to a specific filename in texture_dir (or absolute path) to force one texture.
+  texture_file: null
+  # Must match the --gsd used by `synthforest generate textures`.
+  texture_gsd: 0.05
+  context:
+    context_reference_size: 100.0 # used to scale up max counts for rivers/trails/buildings and the exclusion margins
+    river_count_max: 1
+    # Context-object asset root (roads, water, buildings) containing textures_ver2/.
+    # If missing, context objects fall back to procedural materials.
+    context_assets_dir: ${oc.env:SYNTHFOREST_ASSET_ROOT,data/assets}/city_rs/assets
+
+logging:
+  file_path: ${oc.env:SYNTHFOREST_OUTPUT_ROOT,outputs}/logs/generation/crown_delineation
+
+output_passes:
+  # Render outputs
+  rgb: true
+  instance_id: false
+  variant_id: false
+  density_map: false
+  height_map: true
+  height_map_vis: false
+
+  # Derived outputs
+  smoothed_instance_id: true
+  semantic_id: true
+  semantic_labels: true
+  coco_annotations: true
+  scene_summary: true
+
+mask_postprocess:
+  min_visible_area_m2: 0.8
+  min_final_area_m2: 1.2
+  min_visible_brightness: 0.08
+  visible_brightness_percentile: 90.0
+  min_component_area_m2: 0.25
+  gap_fill_radius_m: 0.50
+  boundary_smooth_radius_m: 0.3
+  boundary_component_merge_radius_m: 1.0
+  ordered_height_percentile: 90.0
+  ordered_absorb_height_margin_m: 2.0
+  ordered_absorb_overlap_fraction: 0.60
+  ordered_outer_envelope_radius_m: 0.45
+  ordered_reclaim_height_margin_m: 0.5
+
+render:
+  no_render: false
+  resolution_x: 2480
+  resolution_y: 2480
+  samples: 64
+  height_threshold: 1.5
+  gsd_at_nadir: 0.05
+
+  # AUTO picks GPU when available, otherwise falls back to CPU.
+  # Valid values: AUTO, GPU, CPU
+  device: AUTO
+  # Valid values: AUTO, CUDA, OPTIX, HIP, METAL, ONEAPI
+  gpu_backend: AUTO
+  use_persistent_data: false
+
+
+# Keep Hydra outputs in-place (do not create timestamped hydra run directories).
+hydra:
+  run:
+    dir: .
+  output_subdir: null

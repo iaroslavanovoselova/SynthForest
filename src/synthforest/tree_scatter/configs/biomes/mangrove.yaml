@@ -1,0 +1,55 @@
+terrain:
+  size: 100.0
+  subdivisions: 180
+  noise_scale: 0.018
+  detail: 1.2
+  roughness: 0.12
+  elevation_min: -0.8
+  elevation_max: 1.2
+  color: [0.20, 0.27, 0.13, 1.0]
+
+scatter:
+  botaniq_species_role_pools:
+    dominant:
+      - Rhizophora mangle
+    companion:
+      - Cocos nucifera
+      - Sabal palmetto
+      - Roystonea regia
+    rare:
+      - Ceiba pentandra
+      - Theobroma cacao
+      - Ficus carica
+      - Areca catechu
+      - Borassus flabellifer
+  botaniq_role_count_ranges:
+    dominant: [1, 1]
+    companion: [1, 3]
+    rare: [0, 3]
+  botaniq_role_abundance_ranges:
+    dominant: [0.65, 0.88]
+    companion: [0.10, 0.30]
+    rare: [0.01, 0.06]
+  botaniq_role_dirichlet_alpha:
+    dominant: 4.0
+    companion: 1.4
+    rare: 0.8
+  scatter_density_min: 0.55
+  scatter_density_max: 0.95
+  crown_area_fill_factor: 0.45
+  canopy_overlap_efficiency: 1.0
+  canopy_closure_at_full_density: 0.86
+  canopy_closure_gamma: 1.35
+  poisson_packing_efficiency: 0.82
+  stem_spacing_crown_fraction_floor: 0.50
+  density_noise_scale: 0.09
+  density_threshold: 0.38
+  density_variation_strength: 0.92
+  density_cluster_exponent: 1.85
+  density_variation_min_at_full_density: 0.25
+  density_variation_fade_power: 2.0
+  density_threshold_fade_strength: 0.50
+  density_cluster_exponent_min_at_full_density: 1.20
+  tree_scale_min: 0.88
+  tree_scale_max: 1.14
+  tree_variants: 20

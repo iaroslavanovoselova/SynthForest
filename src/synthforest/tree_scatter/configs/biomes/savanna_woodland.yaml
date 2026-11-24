@@ -1,0 +1,60 @@
+terrain:
+  size: 100.0
+  subdivisions: 180
+  noise_scale: 0.024
+  detail: 1.4
+  roughness: 0.16
+  elevation_min: -1.8
+  elevation_max: 3.0
+  color: [0.34, 0.30, 0.14, 1.0]
+
+scatter:
+  botaniq_species_role_pools:
+    dominant:
+      - Vachellia tortilis
+      - Vachellia caven
+      - Corymbia aparrerinja
+    companion:
+      - Juniperus osteosperma
+      - Beaucarnea recurvata
+      - Borassus flabellifer
+      - Phoenix canariensis
+      - Olea europaea
+    rare:
+      - Sabal palmetto
+      - Heteromeles arbutifolia
+      - Quercus agrifolia
+      - Pinus ponderosa
+      - Celtis occidentalis
+      - Ficus carica
+  botaniq_role_count_ranges:
+    dominant: [1, 2]
+    companion: [1, 4]
+    rare: [0, 4]
+  botaniq_role_abundance_ranges:
+    dominant: [0.50, 0.76]
+    companion: [0.18, 0.40]
+    rare: [0.02, 0.10]
+  botaniq_role_dirichlet_alpha:
+    dominant: 3.0
+    companion: 1.4
+    rare: 0.8
+  scatter_density_min: 0.40
+  scatter_density_max: 0.70
+  crown_area_fill_factor: 0.64
+  canopy_overlap_efficiency: 0.92
+  canopy_closure_at_full_density: 0.68
+  canopy_closure_gamma: 1.10
+  poisson_packing_efficiency: 0.82
+  stem_spacing_crown_fraction_floor: 0.65
+  density_noise_scale: 0.11
+  density_threshold: 0.48
+  density_variation_strength: 0.95
+  density_cluster_exponent: 2.05
+  density_variation_min_at_full_density: 0.25
+  density_variation_fade_power: 1.6
+  density_threshold_fade_strength: 0.50
+  density_cluster_exponent_min_at_full_density: 1.20
+  tree_scale_min: 0.82
+  tree_scale_max: 1.18
+  tree_variants: 22

@@ -1,0 +1,59 @@
+terrain:
+  size: 100.0
+  subdivisions: 200
+  noise_scale: 0.024
+  detail: 1.5
+  roughness: 0.17
+  elevation_min: -2.0
+  elevation_max: 3.5
+  color: [0.21, 0.31, 0.12, 1.0]
+
+scatter:
+  botaniq_species_role_pools:
+    dominant:
+      - Bertholletia excelsa
+      - Ceiba pentandra
+      - Theobroma cacao
+    companion:
+      - Cocos nucifera
+      - Musa acuminata
+      - Ficus carica
+      - Rhizophora mangle
+      - Roystonea regia
+    rare:
+      - Areca catechu
+      - Rhapis excelsa
+      - Borassus flabellifer
+      - Sabal palmetto
+      - Vachellia caven
+  botaniq_role_count_ranges:
+    dominant: [1, 3]
+    companion: [1, 5]
+    rare: [0, 4]
+  botaniq_role_abundance_ranges:
+    dominant: [0.50, 0.74]
+    companion: [0.22, 0.44]
+    rare: [0.02, 0.10]
+  botaniq_role_dirichlet_alpha:
+    dominant: 3.0
+    companion: 1.4
+    rare: 0.8
+  scatter_density_min: 0.65
+  scatter_density_max: 1.00
+  crown_area_fill_factor: 0.45
+  canopy_overlap_efficiency: 1.0
+  canopy_closure_at_full_density: 0.90
+  canopy_closure_gamma: 1.35
+  poisson_packing_efficiency: 0.85
+  stem_spacing_crown_fraction_floor: 0.45
+  density_noise_scale: 0.08
+  density_threshold: 0.36
+  density_variation_strength: 0.88
+  density_cluster_exponent: 1.70
+  density_variation_min_at_full_density: 0.25
+  density_variation_fade_power: 2.0
+  density_threshold_fade_strength: 0.50
+  density_cluster_exponent_min_at_full_density: 1.20
+  tree_scale_min: 0.90
+  tree_scale_max: 1.18
+  tree_variants: 30

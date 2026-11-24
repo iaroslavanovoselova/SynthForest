@@ -1,0 +1,49 @@
+# Virtual Shizuoka full-raster sliding-window prediction/benchmark.
+#
+# The preprocessing script writes native 20 cm RGB rasters and, for the default
+# 50 cm CHM workflow, a nearest-resampled *_CHM_matchRGB.tif target on the RGB
+# pixel grid while preserving the 50 cm effective height resolution.
+
+model_type: dpt_height
+train_config_path: null
+run_folder: null
+checkpoint_name: last.pth
+checkpoint_path: null
+output_folder: ${SYNTHFOREST_OUTPUT_ROOT}/heights/raster_benchmarks
+benchmark_name: null
+
+rasters: []
+rgb_root_path: ${SYNTHFOREST_DATA_ROOT}/CHM_rasters_20cm/virtual-shizuoka_CHM/benchmark
+height_root_path: ${SYNTHFOREST_DATA_ROOT}/CHM_rasters_20cm/virtual-shizuoka_CHM/benchmark
+rgb_glob: "**/*_RGB.tif"
+height_glob: "**/*_CHM_matchRGB.tif"
+rgb_name_suffix: "_RGB"
+height_name_suffix: "_CHM_matchRGB"
+image_suffixes: [.tif, .tiff, .png, .jpg, .jpeg]
+height_suffixes: [.tif, .tiff]
+
+tile_size: 512
+stride: 256
+batch_size: 1
+device: null
+seed: 42
+max_rasters: null
+save_predictions: true
+save_weight_maps: false
+metric_resolution:
+  enabled: true
+  rgb_gsd_m: 0.2
+  height_gsd_m: 0.5
+  downsample_factor: null
+  min_valid_fraction: 0.5
+  downsample_interpolation: area
+  upsample_interpolation: nearest
+
+wandb:
+  enabled: true
+  project: synthforest_CHE_eval
+  entity: null
+  tags: [virtual-shizuoka-chm, raster-level, last-chkpt]
+  mode: null
+  log_artifacts: true
+  required: false

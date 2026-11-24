@@ -1,0 +1,59 @@
+terrain:
+  size: 100.0
+  subdivisions: 200
+  noise_scale: 0.027
+  detail: 1.7
+  roughness: 0.19
+  elevation_min: -2.5
+  elevation_max: 4.5
+  color: [0.28, 0.28, 0.15, 1.0]
+
+scatter:
+  botaniq_species_role_pools:
+    dominant:
+      - Populus tremuloides
+      - Quercus agrifolia
+      - Celtis occidentalis
+    companion:
+      - Aesculus californica
+      - Robinia pseudoacacia
+      - Heteromeles arbutifolia
+      - Salix babylonica
+      - Malus domestica
+    rare:
+      - Juglans regia
+      - Prunus cerasifera
+      - Aesculus hippocastanum
+      - Quercus robur
+      - Sabal palmetto
+  botaniq_role_count_ranges:
+    dominant: [1, 3]
+    companion: [1, 5]
+    rare: [0, 4]
+  botaniq_role_abundance_ranges:
+    dominant: [0.52, 0.76]
+    companion: [0.20, 0.42]
+    rare: [0.02, 0.10]
+  botaniq_role_dirichlet_alpha:
+    dominant: 3.0
+    companion: 1.6
+    rare: 0.8
+  scatter_density_min: 0.50
+  scatter_density_max: 0.95
+  crown_area_fill_factor: 0.84
+  canopy_overlap_efficiency: 1.0
+  canopy_closure_at_full_density: 0.84
+  canopy_closure_gamma: 1.35
+  poisson_packing_efficiency: 0.85
+  stem_spacing_crown_fraction_floor: 0.55
+  density_noise_scale: 0.075
+  density_threshold: 0.42
+  density_variation_strength: 0.90
+  density_cluster_exponent: 1.80
+  density_variation_min_at_full_density: 0.25
+  density_variation_fade_power: 2.0
+  density_threshold_fade_strength: 0.50
+  density_cluster_exponent_min_at_full_density: 1.20
+  tree_scale_min: 0.88
+  tree_scale_max: 1.16
+  tree_variants: 28

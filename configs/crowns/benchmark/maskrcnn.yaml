@@ -1,0 +1,57 @@
+# Mixed-task real-data benchmark for a DINOv3 Mask R-CNN checkpoint.
+
+model_type: maskrcnn
+train_config_path: null
+run_folder: null
+checkpoint_name: last.pth
+checkpoint_path: null
+real_data_root: ${SYNTHFOREST_DATA_ROOT}/canopyrs
+# Used only for standalone --checkpoint benchmarks outside a detector run folder.
+output_folder: ${SYNTHFOREST_OUTPUT_ROOT}/detectors/benchmarks
+benchmark_name: null
+prediction_source: null
+reuse_predictions: true
+resume_existing_benchmark: true
+
+datasets:
+  - QuebecTrees
+  - Detectree2
+  - NeonTreeEvaluation
+  - SelvaBox
+  - OAM-TCD
+  - BCI50ha
+  - BAMForest
+  - SelvaMask
+fold_name: test
+
+tile_only: true
+score_threshold: 0.05
+nms_threshold: 0.5
+nms_algorithm: iou
+eval_iou_threshold: 50:95
+raster_eval_iou_threshold: 50:95
+require_raster_inputs: false
+evaluate_segmentation_when_available: true
+mask_probability_threshold: 0.5
+
+batch_size: 1
+num_workers: 4
+device: null
+seed: 42
+max_products: null
+max_tiles: null
+
+drop_edge_tiles: false
+edge_tile_black_pixel_threshold: 0.2
+edge_tile_black_pixel_tolerance: 0
+allow_hf_gpkg_download: false
+
+wandb:
+  enabled: true
+  project: synthforest_CD_eval
+  entity: null
+  tags: []
+  mode: null
+  required: false
+  step: 0
+  resume_existing: true

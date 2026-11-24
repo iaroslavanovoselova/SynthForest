@@ -1,0 +1,51 @@
+# Source selection (set exactly one; leave the other one as null):
+# - annotations_dir: use one COCO JSON per raster (matched by trailing 4-digit scene id)
+# - labels_gdf_dir: skip COCO conversion and load pre-converted per-raster label files (.gpkg)
+annotations_dir: ${oc.env:SYNTHFOREST_OUTPUT_ROOT,outputs}/synthforest/crown_delineation/scenes/small_medium/annotations
+labels_gdf_dir: null
+
+images_dir: ${oc.env:SYNTHFOREST_OUTPUT_ROOT,outputs}/synthforest/crown_delineation/scenes/small_medium/images
+height_maps_dir: null
+output_root: ${oc.env:SYNTHFOREST_OUTPUT_ROOT,outputs}/synthforest/crown_delineation/tiles
+product_name: small_medium
+
+# Choose which dataset products to write:
+# - instance_segmentation: RGB tiles + COCO files from annotations/GDF labels
+# - height: shared RGB tiles + height-map tiles, no annotations/GDF needed
+# - both: write both products
+export_mode: instance_segmentation
+
+convert_to_crs_coordinates: false
+# optional cache of per-raster converted labels (.gpkg)
+save_converted_gdf_dir: null
+categories_json: null # optional COCO categories list that is applied gloabally
+
+tile_size: 992
+tile_overlap: 0.30
+ground_resolution: null
+scale_factor: null
+ignore_black_white_alpha_tiles_threshold: 0.5
+# Drop tiles whose windows extend outside the source raster. This prevents rasterio
+# boundless reads from saving black-padded edge tiles.
+drop_edge_tiles: false
+# Keep edge tiles but write a validity mask for padded/nodata pixels. RGB tiles get
+# an alpha band by default; non-RGB tiles fall back to a raster mask.
+write_valid_mask: true
+valid_mask_mode: alpha # alpha | internal_mask
+# Keep false when exporting both tasks so instance segmentation and height estimation share the same RGB tiles.
+ignore_tiles_without_labels: false
+
+train_ratio: 0.99
+aoi_type: band
+
+main_label_category_column_name: category_name
+# If true, all categories are remapped to a single category with the specified name and ID.
+force_single_tree_category: true
+single_tree_category_name: tree
+single_tree_category_id: 1
+
+# Keep Hydra outputs in-place (do not create timestamped hydra run directories).
+hydra:
+  run:
+    dir: .
+  output_subdir: null

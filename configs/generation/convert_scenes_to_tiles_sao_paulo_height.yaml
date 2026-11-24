@@ -1,0 +1,46 @@
+# Tile the São Paulo benchmark raster (50 cm RGB / nDSM) into 256 px tiles.
+# These tiles are only used as unlabeled appearance-adaptation references for
+# Syn-20; evaluation uses the full raster (configs/height/benchmark/sao_paulo_raster).
+# Run `synthforest prepare tiles --config-name convert_scenes_to_tiles_sao_paulo_height`.
+
+annotations_dir: null
+labels_gdf_dir: null
+
+images_dir: ${oc.env:SYNTHFOREST_DATA_ROOT,data}/CHM_rasters_50cm/sao_paulo/benchmark
+height_maps_dir: ${oc.env:SYNTHFOREST_DATA_ROOT,data}/CHM_rasters_50cm/sao_paulo/benchmark
+images_glob: "*_RGB.tif"
+height_maps_glob: "*_CHM.tif"
+image_pair_suffix: "_RGB"
+height_pair_suffix: "_CHM"
+output_root: ${oc.env:SYNTHFOREST_DATA_ROOT,data}/CHM_tiles_50cm
+product_name: sao_paulo
+export_mode: height
+
+convert_to_crs_coordinates: false
+save_converted_gdf_dir: null
+categories_json: null
+
+tile_size: 256
+tile_overlap: 0.0
+ground_resolution: null
+scale_factor: null
+ignore_black_white_alpha_tiles_threshold: 0.5
+height_ignore_black_white_alpha_tiles_threshold: 1.01
+drop_edge_tiles: false
+write_valid_mask: true
+valid_mask_mode: alpha
+ignore_tiles_without_labels: false
+
+# All tiles are written to tiles/train.
+train_ratio: 1.0
+aoi_type: band
+
+main_label_category_column_name: category_name
+force_single_tree_category: true
+single_tree_category_name: tree
+single_tree_category_id: 1
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null

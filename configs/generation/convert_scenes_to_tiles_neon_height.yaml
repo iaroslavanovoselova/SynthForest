@@ -1,0 +1,66 @@
+# Tile the resampled NEON real-height training scenes.
+#
+# Run after `synthforest data prepare neon`, then use
+# `synthforest prepare tiles --config-name convert_scenes_to_tiles_neon_height`.
+
+# Height-only export does not require instance annotations.
+annotations_dir: null
+labels_gdf_dir: null
+
+# RGB and CHM products are colocated in the downloaded train fold. The globs
+# prevent the converter from treating CHMs as RGB inputs (and vice versa).
+images_dir: ${oc.env:SYNTHFOREST_DATA_ROOT,data}/NEON_CHM_1m_real_all/train
+height_maps_dir: ${oc.env:SYNTHFOREST_DATA_ROOT,data}/NEON_CHM_1m_real_all/train
+images_glob: "*_RGB.tif"
+height_maps_glob: "*_CHM.tif"
+image_pair_suffix: "_RGB"
+height_pair_suffix: "_CHM"
+
+# Produces ${oc.env:SYNTHFOREST_DATA_ROOT,data}/NEON_CHM_1m_real_train,
+# matching the product/tiles/train + product/height_maps/train layout consumed
+# by HeightTileDataset.
+output_root: ${oc.env:SYNTHFOREST_DATA_ROOT,data}
+product_name: NEON_CHM_1m_real_tiles
+export_mode: height
+
+convert_to_crs_coordinates: false
+save_converted_gdf_dir: null
+categories_json: null
+
+# Inputs already have 50 cm pixels. CHM values have an effective resolution of
+# 1 m, retained through nearest-neighbor upsampling by the resampling script.
+tile_size: 256
+tile_overlap: 0.0
+ground_resolution: null
+scale_factor: null
+
+# Disable pixel-value heuristics: black RGB and zero CHM can both be legitimate.
+# Instead, require at least 50% valid coverage from the identical RGB/CHM
+# internal masks written by the resampling script.
+ignore_black_white_alpha_tiles_threshold: 1.01
+height_ignore_black_white_alpha_tiles_threshold: 1.01
+min_valid_fraction: 0.5
+
+# Retain useful partial edge tiles and encode their exact validity. Using an
+# internal mask preserves three-band RGB files and the matching CHM mask.
+drop_edge_tiles: false
+write_valid_mask: true
+valid_mask_mode: internal_mask
+ignore_tiles_without_labels: false
+
+# A ratio of exactly 1.0 creates only tiles/train; no tiles/valid or
+# height_maps/valid directories are generated.
+train_ratio: 1.0
+aoi_type: band
+
+# Instance-only settings retained for schema compatibility.
+main_label_category_column_name: category_name
+force_single_tree_category: false
+single_tree_category_name: tree
+single_tree_category_id: 1
+
+# Keep Hydra outputs in-place rather than creating a timestamped run directory.
+hydra:
+  run:
+    dir: .
+  output_subdir: null

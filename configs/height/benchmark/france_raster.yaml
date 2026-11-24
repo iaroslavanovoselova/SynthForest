@@ -1,0 +1,52 @@
+# France MNH LiDAR HD + Ortho Express held-out test full-raster benchmark.
+#
+# The preprocessing script writes native 20 cm RGB rasters, native 50 cm MNH
+# height rasters, and nearest-resampled *_CHM_matchRGB.tif targets on the RGB
+# pixel grid while preserving the 50 cm effective height resolution.
+# After `python -m synthforest.commands.split_real_height_data_valid_test
+# --dataset-preset france --apply`, benchmark/ should
+# contain only the held-out test rasters; validation rasters are moved aside.
+
+model_type: dpt_height
+train_config_path: null
+run_folder: null
+checkpoint_name: last.pth
+checkpoint_path: null
+output_folder: ${SYNTHFOREST_OUTPUT_ROOT}/heights/raster_benchmarks
+benchmark_name: null
+
+rasters: []
+rgb_root_path: ${SYNTHFOREST_DATA_ROOT}/CHM_rasters_20cm/France_CHM_OrthoExpress-20cm_MNH-50cm/benchmark
+height_root_path: ${SYNTHFOREST_DATA_ROOT}/CHM_rasters_20cm/France_CHM_OrthoExpress-20cm_MNH-50cm/benchmark
+rgb_glob: "**/*_RGB.tif"
+height_glob: "**/*_CHM_matchRGB.tif"
+rgb_name_suffix: "_RGB"
+height_name_suffix: "_CHM_matchRGB"
+image_suffixes: [.tif, .tiff, .png, .jpg, .jpeg]
+height_suffixes: [.tif, .tiff]
+
+tile_size: 512
+stride: 256
+batch_size: 1
+device: null
+seed: 42
+max_rasters: null
+save_predictions: true
+save_weight_maps: false
+metric_resolution:
+  enabled: true
+  rgb_gsd_m: 0.2
+  height_gsd_m: 0.5
+  downsample_factor: null
+  min_valid_fraction: 0.5
+  downsample_interpolation: area
+  upsample_interpolation: nearest
+
+wandb:
+  enabled: true
+  project: synthforest_CHE_eval
+  entity: null
+  tags: [france-mnh-lidar-hd, ortho-express, raster-level]
+  mode: null
+  log_artifacts: true
+  required: false
